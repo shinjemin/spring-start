@@ -29,36 +29,18 @@ public class MemoController {
 
     @DeleteMapping("/api/memos/{id}")
     public Long deleteMemo(@PathVariable Long id, @RequestBody MemoRequestDto requestDto) {
-        Memo memo = memoRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
-        );
-        Long a = (long)0;
-        if(memo.getPw().equals(requestDto.getPw())){
-            memoRepository.deleteById(id);
-            return id;
-        }else{
-            return a;
-        }
+        return memoService.delete(id, requestDto);
     }
+
 
     @PutMapping("/api/memos/{id}")
     public Long updateMemo(@PathVariable Long id, @RequestBody MemoRequestDto requestDto) {
-        Memo memo = memoRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
-        );
-        Long a = (long)0;
-        if(memo.getPw().equals(requestDto.getPw())){
-            memoService.update(id, requestDto);
-            return id;
-        }else{
-            return a;
-        }
+           return memoService.update(id, requestDto);
+
 
     }
     @GetMapping("/api/memos/{id}")
     public Memo getMemos2(@PathVariable Long id) {
-        Memo memo =  memoRepository.findById(id).orElseThrow(
-                ()->new IllegalArgumentException("아이디가 존재하지 않습니다."));
-        return memo;
+        return memoService.get(id);
     }
 }
