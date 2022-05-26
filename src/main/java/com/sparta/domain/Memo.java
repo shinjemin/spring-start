@@ -23,7 +23,7 @@ public class Memo extends Timestamped { // 생성,수정 시간을 자동으로 
     @Column(nullable = false)
     private String title;
 
-    @JsonIgnore
+    @JsonIgnore //get 요청시 비밀번호가 노출 되지 않게 처리
     @Column(nullable = false)
     private String pw;
 
