@@ -18,13 +18,12 @@ public class MemoController {
 
     @PostMapping("/api/memos")
     public Memo createMemo(@RequestBody MemoRequestDto requestDto) {
-        Memo memo = new Memo(requestDto);
-        return memoRepository.save(memo);
+        return memoService.createMemo(requestDto);
     }
 
     @GetMapping("/api/memos")
     public List<Memo> getMemos() {
-        return memoRepository.findAllByOrderByModifiedAtDesc();
+        return memoRepository.findAllByOrderByIdDesc();
     }
 
     @DeleteMapping("/api/memos/{id}")

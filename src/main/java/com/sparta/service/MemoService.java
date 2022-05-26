@@ -6,6 +6,7 @@ import com.sparta.domain.MemoRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.transaction.Transactional;
@@ -52,6 +53,12 @@ public class MemoService {
         Memo memo = memoRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("아이디가 존재하지 않습니다."));
         return memo;
+    }
+
+    @Transactional
+    public Memo createMemo(@RequestBody MemoRequestDto requestDto) {
+        Memo memo = new Memo(requestDto);
+        return memoRepository.save(memo);
     }
 
 
