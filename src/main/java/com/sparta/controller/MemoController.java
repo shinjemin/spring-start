@@ -16,13 +16,13 @@ public class MemoController {
     private final MemoRepository memoRepository;
     private final MemoService memoService;
 
-    @PostMapping("/api/memos") //api에서 post 요청시 memoRepository.save를 호출하고 결과 값 리턴
+    @PostMapping("/api/ memos") //api에서 post 요청시 memoRepository.save를 호출하고 결과 값 리턴
     public Memo createMemo(@RequestBody MemoRequestDto requestDto) {
         Memo memo = new Memo(requestDto);
         return memoRepository.save(memo);
     }
 
-    @GetMapping("/api/memos")//api에서 get 요청시 db 모든 정보를 id 내림차순으로 리턴
+    @GetMapping("/api/get/memos")//api에서 get 요청시 db 모든 정보를 id 내림차순으로 리턴
     public List<Memo> getMemos() {
         return memoRepository.findAllByOrderByIdDesc();
     }
@@ -39,7 +39,7 @@ public class MemoController {
 
 
     }
-    @GetMapping("/api/memos/{id}") //api에서 get 요청시 memoService.get 호출 후 결과 값 리턴
+    @GetMapping("/api/get/memos/{id}") //api에서 get 요청시 memoService.get 호출 후 결과 값 리턴
     public Memo getMemos2(@PathVariable Long id) {
         return memoService.get(id);
     }

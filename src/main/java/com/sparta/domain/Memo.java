@@ -27,6 +27,8 @@ public class Memo extends Timestamped { // 생성,수정 시간을 자동으로 
     @Column(nullable = false)
     private String pw;
 
+    
+
     public Memo(String username, String contents, String title, String pw) {
         this.username = username;
         this.contents = contents;
