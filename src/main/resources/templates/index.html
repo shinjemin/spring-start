@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>spring blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="basic.js"></script>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+<div class="header" style="position:relative;">
+    <div id="header-title-login-user">
+        <span th:text="${username}"></span> 님의
+    </div>
+    <form id="my_form" method="post" action="/user/logout">
+        <a id="logout-text" href="javascript:{}" onclick="document.getElementById('my_form').submit();">로그아웃</a>
+    </form>
+</div>
+<h1>ARC를 이용해주세요
+    <p>get:   /api/memos</p>
+    <p>get:   /api/memos/{id}</p>
+    <p>post:   /api/memos</p>
+    <p>put:   /api/memos/{id}</p>
+    <p>delete:   /api/memos/{id}</p>
+    <p>형식
+        {
+        title: "",
+        username: "",
+        contents: "",
+        pw: ""
+        }</p>
+</h1>
+</body>
+
+</html>
