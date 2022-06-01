@@ -1,9 +1,11 @@
 package com.sparta.controller;
 
 
-import com.sparta.service.SignupRequestDto;
+import com.sparta.models.SignupRequestDto;
+import com.sparta.security.UserDetailsImpl;
 import com.sparta.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,5 +38,10 @@ public class UserController {
     public String registerUser(SignupRequestDto requestDto) {
         userService.registerUser(requestDto);
         return "redirect:/user/login";
+    }
+
+    @GetMapping("/user/username")
+    public String userId(@AuthenticationPrincipal UserDetailsImpl userDetails){
+        return userDetails.getUsername();
     }
 }

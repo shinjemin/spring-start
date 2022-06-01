@@ -1,6 +1,6 @@
 package com.sparta.security;
 
-import com.sparta.domain.Users;
+import com.sparta.models.Users1;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -9,13 +9,13 @@ import java.util.Collections;
 
 public class UserDetailsImpl implements UserDetails {
 
-    private final Users user;
+    private final Users1 user;
 
-    public UserDetailsImpl(Users user) {
+    public UserDetailsImpl(Users1 user) {
         this.user = user;
     }
 
-    public Users getUser() {
+    public Users1 getUser() {
         return user;
     }
 

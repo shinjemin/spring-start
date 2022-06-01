@@ -1,4 +1,5 @@
-package com.sparta.domain;
+package com.sparta.models;
+
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @Getter // get 함수를 일괄적으로 만들어줍니다.
 @NoArgsConstructor // 기본 생성자를 만들어줍니다.
 @Entity // DB 테이블 역할을 합니다.
-public class Users {
+public class Users1 {
 
     // ID가 자동으로 생성 및 증가합니다.
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,14 +29,13 @@ public class Users {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
-    @Enumerated(value = EnumType.STRING)
-    private UserRoleEnum role;
 
-    public Users(String username, String password, String email, UserRoleEnum role) {
+
+
+    public Users1(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.role = role;
+
     }
 }

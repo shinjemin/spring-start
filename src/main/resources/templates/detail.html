@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>항해99 대나무숲</title>
+    <title>바다 위 대나무 숲</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     <!--    font-family: 'Jua', sans-serif;-->
+
     <script>
         $(document).ready(function () {
             getMessages();
@@ -18,46 +19,45 @@
         // 게시글을 불러옵니다.
         function getMessages() {
             $('#cards-box').empty();
+            let idx = location.href.split("id=")[1]; //localhost/detail.html?id=12
             $.ajax({
                 type: "GET",
-                url: "/api/get/contents",
+                url: `/api/get/contents/${idx}`,
                 data: {},
                 success: function (response) {
-                    for (let i = 0; i < response.length; i++) {
-                        let post = response[i];
-                        let id = post.id;
-                        let name = post.name;
-                        let title = post.title;
-                        let contents = post.contents;
-                        let modifiedAt = post.modifiedAt;
-                        addHTML(id, name, title, contents, modifiedAt);
-                    }
+                    let post = response;
+                    let id = post.id;
+                    let name = post.name;
+                    let title = post.title;
+                    let contents = post.contents;
+                    let modifiedAt = post.modifiedAt;
+                    addHTML(id, name, title, contents, modifiedAt);
                 }
             });
         }
 
+        // 불러온 게시글을 html에 붙여줍니다.
         function addHTML(id, name, title, contents, modifiedAt) {
             let tempHtml = makeMessage(id, name, title, contents, modifiedAt);
             $('#cards-box').append(tempHtml);
         }
 
+        // 게시글 형태를 만들어줍니다.
         function makeMessage(id, name, title, contents, modifiedAt) {
-            return `<a href="detail.html?id=${id}">
-                        <div class="card">
-                            <div class="metadata">
-                               <div id="${id}-name" class="name">
-                                   ${name}
-                               </div>
-                               <div class="date">
-                                   ${modifiedAt}
-                               </div>
-                            </div>
-                        <h2 class='title' id="${id}-title">"${title}"</h2>
-                            <div class="contents" id="${id}-contents" >
-                               ${contents}
-                            </div>
-                            </a>
-                        </div>`;
+            return `<div class="card">
+                        <div class="metadata">
+                           <div id="${id}-name" class="name">
+                               ${name}
+                           </div>
+                           <div class="date">
+                               ${modifiedAt}
+                           </div>
+                        </div>
+                    <h2 class='title' id="${id}-title">"${title}"</h2>
+                        <div class="contents" id="${id}-contents" >
+                           ${contents}
+                        </div>
+                    </div>`;
         }
 
     </script>
@@ -73,14 +73,15 @@
             margin: 0px;
         }
 
+        .edit {
+            display: none;
+            pardding-left: 23px;
+        }
+
         .wrap {
             width: 538px;
             margin: 10px auto;
             height: 300px;
-        }
-
-        .to-write{
-            margin-bottom: 0;
         }
 
         .to-write button {
@@ -113,10 +114,11 @@
         }
 
         .header {
-            margin-top: 170px;
+            margin-top: 0;
         }
 
         .header h2 {
+            /*font-family: 'Noto Sans KR', sans-serif;*/
             height: 33px;
             font-size: 42px;
             font-weight: 500;
@@ -126,7 +128,7 @@
             letter-spacing: -0.5px;
             text-align: center;
             color: #ffffff;
-            margin-top: 100px;
+            margin-top: 170px;
         }
 
         .header p {
@@ -142,6 +144,15 @@
             letter-spacing: -1.12px;
             text-align: center;
             color: #ffffff;
+        }
+
+        .area-write img {
+            cursor: pointer;
+            position: relative;
+            width: 22.2px;
+            height: 18.7px;
+            bottom: 50px;
+            left: 500px;
         }
 
         .card {
@@ -169,12 +180,8 @@
         }
 
         .card .metadata .date {
-
-        }
-
-        .card .metadata .name {
-            margin-right: 50px;
-
+            position: absolute;
+            right: 20px;
         }
 
         .contents {
@@ -187,18 +194,8 @@
             display: none;
         }
 
-        .contents textarea.te-edit {
-            border-right: none;
-            border-top: none;
-            border-left: none;
-            resize: none;
-            border-bottom: 1px solid #212529;
-            width: 100%;
-            font-family: 'Spoqa Han Sans';
-        }
-
         #cards-box {
-            margin-top: 12px;
+            margin-top: 250px;
         }
 
         .card h2 {
@@ -209,34 +206,36 @@
             text-decoration: none;
             color: #000000;
         }
+
+        #home {
+            text-decoration: none;
+            color: #FFA547;
+            display: inline;
+            text-align: right;
+            font-size: 30px;
+            position: absolute;
+        }
     </style>
+
 </head>
 
 <body>
-<div id="header-title-login-user">
-    <span th:text="${username}"></span> 님의
-</div>
-<form id="my_form" method="post" action="/user/logout">
-    <a id="logout-text" href="javascript:{}" onclick="document.getElementById('my_form').submit();">로그아웃</a>
-</form>
-<div class="header" style="position:relative;">
-
-</div>
 <div class="background-header">
+
 </div>
 <div class="background-body">
 
 </div>
 <div class="wrap">
+    <a href="/" id="home">Home</a>
     <div class="header">
         <h2>항해99 바다 위 대나무숲<br><br>
             맘껏 외치세요 무야호!</h2>
     </div>
-    <div class="to-write">
-        <button type="button" class="btn btn-primary" onclick="location.href='write.html'"><b>글 쓰 기</b></button>
-    </div>
+
     <div id="cards-box" class="area-read">
         <div class="card">
+            <!-- date/name 영역 -->
             <div class="metadata">
                 <div class="date">
                     October 10, 2020
@@ -245,16 +244,16 @@
                     anonymous
                 </div>
             </div>
+            <!-- contents 조회영역-->
             <h2>asd</h2>
             <div class="contents">
                 <div id="1-contents" class="text">
                     dsafnkalfklewakflekelafkleajfkleafkldsankflenwaklfnekwlafneklwanfkelawnfkelanfkleanfklew
                 </div>
                 <div id="1-editarea" class="edit">
-                    <textarea id="1-textarea" class="te-edit" name="" cols="30" rows="5"></textarea>
+                    <!--  <textarea id="1-textarea" class="te-edit" name="" id="" cols="30" rows="5"></textarea>-->
                 </div>
             </div>
-
         </div>
     </div>
 </div>
