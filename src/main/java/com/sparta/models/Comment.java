@@ -1,10 +1,7 @@
 package com.sparta.models;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sparta.controller.ContentsRestController;
+import com.sparta.dto.CommentRequestDto;
 import com.sparta.security.UserDetailsImpl;
-import com.sparta.service.ContentsService;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -33,14 +30,14 @@ public class Comment extends Timestamped {
 
 
 
-    public Comment(Long id,CommentRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
+    public Comment(CommentRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
 
-        this.memoId = id;
+        this.memoId = requestDto.getMemoId();
         this.contents = requestDto.getContents();
         this.username = userDetails.getUsername();
     }
-    public void update(Long id,CommentRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
-        this.memoId = id;
+    public void update(CommentRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
+        this.memoId = requestDto.getMemoId();
         this.contents = requestDto.getContents();
         this.username = userDetails.getUsername();
     }

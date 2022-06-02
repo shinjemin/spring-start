@@ -1,5 +1,7 @@
 package com.sparta.models;
 
+
+import com.sparta.dto.ContentsRequestDto;
 import com.sparta.security.UserDetailsImpl;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

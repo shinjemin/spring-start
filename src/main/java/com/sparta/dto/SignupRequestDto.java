@@ -1,4 +1,4 @@
-package com.sparta.models;
+package com.sparta.dto;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,8 +1,7 @@
 package com.sparta.service;
 
 import com.sparta.models.Contents;
-import com.sparta.models.ContentsRequestDto;
-import com.sparta.repository.ContentsRepository;
+import com.sparta.dto.ContentsRequestDto;
 import com.sparta.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

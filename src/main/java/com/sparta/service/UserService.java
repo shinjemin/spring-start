@@ -1,7 +1,7 @@
 package com.sparta.service;
 
 
-import com.sparta.models.SignupRequestDto;
+import com.sparta.dto.SignupRequestDto;
 import com.sparta.repository.UserRepository;
 import com.sparta.models.Users1;
 

@@ -1,7 +1,7 @@
 package com.sparta.controller;
 
 
-import com.sparta.models.SignupRequestDto;
+import com.sparta.dto.SignupRequestDto;
 import com.sparta.security.UserDetailsImpl;
 import com.sparta.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
